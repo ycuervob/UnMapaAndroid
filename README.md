@@ -4,7 +4,7 @@ _Proyecto de la materia **Estructuras de datos** para la creacion de un mapa de 
 
 ## 👨🏿‍💻 Construido con 👨🏿‍💻
 
-*[NetBeans]* [NetBeans](https://netbeans.org/) - IDE en el cual se crearon las clases base del proyecto.
+* [NetBeans] [NetBeans](https://netbeans.org/) - IDE en el cual se crearon las clases base del proyecto.
 * [AndroidStudio](https://developer.android.com/studio) - Para la estructura del proyecto android y la creación de la interfaz.
 
 ## Autores:
