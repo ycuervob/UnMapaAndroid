@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_mapa"
+            android:icon="@drawable/mapa_icon"
+            android:title="@string/menu_mapa" />
+        <item
+            android:id="@+id/nav_edificios"
+            android:icon="@drawable/edificio_icon"
+            android:title="@string/menu_edificios" />
+        <item
+            android:id="@+id/nav_oficinas"
+            android:icon="@drawable/oficina_icon"
+            android:title="@string/menu_oficinas" />
+
+        <item
+            android:id="@+id/nav_historial"
+            android:icon="@drawable/historial_icon"
+            android:title="@string/menu_historial" />
+
+        <item
+            android:id="@+id/nav_comentarios"
+            android:icon="@drawable/comentario_icon"
+            android:title="@string/menu_comentarios" />
+
+    </group>
+</menu>

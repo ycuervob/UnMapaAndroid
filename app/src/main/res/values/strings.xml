@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">UnMapa</string>
+    <string name="action_sugerencias">Sugerencias</string>
+
+    <string name="menu_mapa">Mapa</string>
+    <string name="menu_edificios">Edificios</string>
+    <string name="menu_oficinas">Oficinas</string>
+    <string name="menu_comentarios">Comentarios</string>
+    <string name="menu_historial">Historial</string>
+    <string name="copy_imagen_edificios_ingcongnitoicon">
+        Iconos diseñados por <a href="https://icon54.com/" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.es/" title="Flaticon"> www.flaticon.es</a>
+    </string>
+    <string name="copy_imagen_oficinas_comentarios_mapa_historial_eliminarHistorial">
+        Iconos diseñados por <a href="https://www.flaticon.es/autores/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.es/" title="Flaticon"> www.flaticon.es</a>    3
+    </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="textelemento">TextView</string>
+
+    <string name="Numero_Columna">Numero</string>
+    <string name="Nombre_Columna">Nombre</string>
+    <string name="Apodo_Columna">Apodo</string>
+    <string name="hit_busqueda">Escriba el texto a buscar...</string>
+    <string name="texto_botton_busqueda">Buscar</string>
+    <string name="nombre_usuario">Anónimo</string>
+    <string name="TextoBusquedaComentario">Escriba un índice de comentario</string>
+    <string name="TextoEliminarHisto">Eliminar Historial</string>
+
+</resources>
