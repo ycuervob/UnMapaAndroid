@@ -22,11 +22,13 @@ import com.PEDG1.unmapa.data.Comment;
 import com.PEDG1.unmapa.data.Edificio;
 import com.PEDG1.unmapa.data.HandleFile;
 import com.PEDG1.unmapa.data.Oficina;
+import com.PEDG1.unmapa.structures.Hash;
 import com.PEDG1.unmapa.structures.ListDinamic;
 import com.PEDG1.unmapa.structures.Node;
 import com.PEDG1.unmapa.structures.Stack;
 import com.PEDG1.unmapa.structures.TreeNode;
 import com.PEDG1.unmapa.ui.Adaptador;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.Normalizer;
 
@@ -36,8 +38,9 @@ public class ComentariosFragment extends Fragment {
     ListView listaComentarios;
     BaseAdapter adapter;
     Comment[] datas;
-    Button botonBusqueda;
+    FloatingActionButton botonBusqueda;
     EditText entradaTexto;
+    FloatingActionButton BotonBusquedaTexto;
     ComentariosFragment com = this;
     Avltree<Comment> rutillaAvl;
 
@@ -50,17 +53,20 @@ public class ComentariosFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         vista = inflater.inflate(R.layout.fragment_comentarios, container, false);
         listaComentarios = vista.findViewById(R.id.listComentarios);
-        botonBusqueda = vista.findViewById(R.id.buttonBusquedaComentario);
+        BotonBusquedaTexto = vista.findViewById(R.id.floatingActionButtonBuscar_Texto);
+        botonBusqueda = vista.findViewById(R.id.floatingActionButtonBuscar);
         entradaTexto = vista.findViewById(R.id.texteditablebusquedaComentario);
 
         HandleFile file =  new HandleFile("/data/data/com.PEDG1.unmapa/files/comentarios_10k.csv");
-        Stack<Comment> rutilla =  file.LeeArchivo("comentario");
+        final Stack<Comment> rutilla =  file.LeeArchivo("comentario");
 
         try{
             rutillaAvl =  file.leeArchivoAVL();
         }catch (Exception e){
             rutillaAvl = new Avltree<>(new TreeNode(new Comment(0,0,"nada","nada")));
         }
+
+
 
         //Toast toast = Toast.makeText(this.getActivity(), "Esto es: "+rutilla+" cambió", Toast.LENGTH_SHORT);
         //toast.show();
@@ -77,6 +83,43 @@ public class ComentariosFragment extends Fragment {
             public void onClick(View v) {
                 adapter = new Adaptador(com.getContext(), datas);
                 listaComentarios.setAdapter(adapter);
+            }
+        });
+
+        BotonBusquedaTexto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(entradaTexto.getText().toString().equals(" ")
+                        || entradaTexto.getText().toString().equals("")
+                        || entradaTexto.getText() == null
+                        || entradaTexto.getText().toString().contains("  ")){
+                    Toast toast = Toast.makeText(com.getActivity(), "Ingrese algún texto", Toast.LENGTH_SHORT);
+                    toast.show();
+                }else{
+
+                    Hash<String> hash = new Hash<>(10);
+                    ListDinamic lista = new ListDinamic();
+                    Node<Comment> pivoote = rutilla.ObtenerCabeza();
+                    for (int i = 0; i < rutilla.tamano; i++) {
+
+                        if(hash.Rabinkarp(pivoote.informacion.getComment(),entradaTexto.getText().toString())){
+                            lista.add(pivoote.informacion.toString());
+                        }
+
+                        pivoote = pivoote.siguiente;
+                    }
+
+                    Comment[] res =  new Comment[lista.length()];
+                    String[] text;
+                    for (int i = 0; i < lista.length(); i++) {
+                        text = lista.get(i).split(";");
+                        res[i] =  new Comment(Double.parseDouble(text[0]),Double.parseDouble(text[1]),text[2],text[3]);
+                    }
+
+                    adapter = new Adaptador(com.getContext(), res);
+                    listaComentarios.setAdapter(adapter);
+
+                }
             }
         });
 

@@ -45,8 +45,6 @@ public class Hash<T>{
         int[] H = new int[Total.length() - LongSubstringP + 1];
         String S = Total.substring(Total.length()- LongSubstringP,Total.length());
 
-        System.out.print("valor  S: "+S+"   --  ");
-
 
         H[Total.length() - LongSubstringP] = hashFunction((T) S);
 
@@ -64,30 +62,30 @@ public class Hash<T>{
         return H;
     }
 
-    public Stack Rabinkarp(String Total, String Parte){
-        Stack<Integer> resultado = new Stack<>();
+    public boolean Rabinkarp(String Total, String Parte){
+
+        if(Parte.length()> Total.length())return false;
 
         int[] H = PrecomputedHashes(Total,Parte.length(),p,x);
         int pHash = hashFunction((T) Parte);
 
-        System.out.println("valor parte: "+Parte);
+        if(pHash == H[H.length-1]){
+            return true;
+        }
 
-        for (int i = 0; i < Total.length()-Parte.length(); i++) {
-
-            System.out.println(H[i]+"    "+pHash);
+        for (int i = 0; i <= Total.length()-Parte.length(); i++) {
 
             if(pHash != H[i]){
                 continue;
             }
 
-
             if(AreEqual(Total.substring(i,i+Parte.length()),Parte)){
-                resultado.InsertarNodo(i);
+                return true;
             }
 
         }
 
-        return resultado;
+        return false;
     }
 
     public boolean AreEqual(String S1,String S2){
