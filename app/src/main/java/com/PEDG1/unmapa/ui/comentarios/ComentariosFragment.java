@@ -97,6 +97,7 @@ public class ComentariosFragment extends Fragment {
                     toast.show();
                 }else{
 
+
                     Hash<String> hash = new Hash<>(10);
                     ListDinamic lista = new ListDinamic();
                     Node<Comment> pivoote = rutilla.ObtenerCabeza();
@@ -108,6 +109,7 @@ public class ComentariosFragment extends Fragment {
 
                         pivoote = pivoote.siguiente;
                     }
+
 
                     Comment[] res =  new Comment[lista.length()];
                     String[] text;
