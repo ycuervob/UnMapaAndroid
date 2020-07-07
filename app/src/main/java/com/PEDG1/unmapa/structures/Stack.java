@@ -30,12 +30,40 @@ public class Stack<T>{
     }
     
     //Metodo: Insertar nodo
-    public <T> void InsertarNodo(T nodo){
-        Node nuevoNodo = new Node(nodo);
+    public <T> void InsertarNodo(T Objeto){
+        Node<T> nuevoNodo = new Node<>(Objeto);
         nuevoNodo.siguiente = Cabeza;
         Cabeza = nuevoNodo;
         this.tamano++;
     }
+
+    //Medodo:Eliminar un objeto buscado
+    public void EliminarNodo(T Objeto){
+        Node pivote =  this.ObtenerCabeza();
+        Node PivoteAnterior =  null;
+
+
+        if (Objeto.equals(pivote.informacion)) {
+            this.EliminarNodo();
+        }else {
+            PivoteAnterior =  pivote;
+            pivote =  pivote.siguiente;
+
+            for (int i = 1; i < this.tamano; i++) {
+
+                if (Objeto.equals(pivote.informacion)) {
+                    PivoteAnterior.siguiente = pivote.siguiente;
+                    this.tamano--;
+                }
+
+                PivoteAnterior =  pivote;
+                pivote =  pivote.siguiente;
+
+            }
+        }
+
+    }
+
     
     //Metodo: Eliminar nodo de la pila
     public Node EliminarNodo(){
